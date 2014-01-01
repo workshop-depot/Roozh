@@ -1,4 +1,9 @@
-﻿var Roozh = {
+﻿/*
+By:      @dc0d
+License: See license file
+*/
+
+var Roozh = {
     isValidGregorianDate: function (d) {
         var s = Object.prototype.toString.call(d);
 
@@ -242,5 +247,4 @@
         return { year: p.Jy, month: p.Jm, day: p.Jd };
     },
 };
-
 

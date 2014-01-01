@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+By:      @dc0d
+License: See license file
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
