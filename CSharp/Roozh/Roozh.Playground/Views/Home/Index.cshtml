@@ -1,0 +1,91 @@
+﻿<h2>Roozh</h2>
+
+<table>
+    <tr>
+        <td>
+            <fieldset>
+                <legend>Gregorian
+                </legend>
+
+                <input id="gregorianYear" type="text" />
+                <input id="gregorianMonth" type="text" />
+                <input id="gregorianDay" type="text" />
+            </fieldset>
+        </td>
+        <td>
+            <fieldset>
+                <legend>Persian
+                </legend>
+
+                <input id="persianYear" type="text" />
+                <input id="persianMonth" type="text" />
+                <input id="persianDay" type="text" />
+            </fieldset>
+        </td>
+    </tr>
+</table>
+
+<p id="board"></p>
+
+@section scripts {
+    <script type="text/javascript">
+        function toPersian() {
+            var year = Number($("#gregorianYear").val());
+            var month = Number($("#gregorianMonth").val());
+            var day = Number($("#gregorianDay").val());
+
+            var persian = Roozh.gregorianToPersian(year, month, day);
+
+            $("#persianYear").val(persian.year);
+            $("#persianMonth").val(persian.month);
+            $("#persianDay").val(persian.day);
+        }
+
+        function toGregorian() {
+            var year = Number($("#persianYear").val());
+            var month = Number($("#persianMonth").val());
+            var day = Number($("#persianDay").val());
+
+            var onow = Roozh.persianToGregorian(year, month, day);
+            var persian = Roozh.gregorianToPersian(onow.year, onow.month, onow.day);
+
+            $("#gregorianYear").val(onow.year);
+            $("#gregorianMonth").val(onow.month);
+            $("#gregorianDay").val(onow.day);
+
+            $("#persianYear").val(persian.year);
+            $("#persianMonth").val(persian.month);
+            $("#persianDay").val(persian.day);
+        }
+
+        $(function () {
+            var now = Roozh.toGregorianDate(Date.now());
+
+            var onow = Roozh.pojsoGregorianDate(now);
+
+            var persian = Roozh.gregorianToPersian(onow.year, onow.month, onow.day);
+
+            $("#gregorianYear").val(onow.year);
+            $("#gregorianMonth").val(onow.month);
+            $("#gregorianDay").val(onow.day);
+
+            $("#persianYear").val(persian.year);
+            $("#persianMonth").val(persian.month);
+            $("#persianDay").val(persian.day);
+
+            //
+
+            $("#gregorianYear").on('input', toPersian);
+            $("#gregorianMonth").on('input', toPersian);
+            $("#gregorianDay").on('input', toPersian);
+
+            $("#persianYear").on('input', toGregorian);
+            $("#persianMonth").on('input', toGregorian);
+            $("#persianDay").on('input', toGregorian);
+        });
+    </script>
+}
+
+@section styles {
+
+}
