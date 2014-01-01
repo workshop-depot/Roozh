@@ -12,3 +12,5 @@ The code is provided in both JavaScript and C#. True story is, I've found this c
 But 456 years is a wide enough range to start using this code right now for daily usage. I do not know about you, but I highly doubt that if I could see 250 years from now!
 
 Happy coding and feedbacks are welcome!
+
+Version: 0.0.1 alpha (but core algorithm is correct, just needs some tools around the core)
