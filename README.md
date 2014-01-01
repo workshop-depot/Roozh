@@ -13,10 +13,11 @@ But 456 years is a wide enough range to start using this code right now for dail
 
 Happy coding and feedbacks are welcome!
 
-Usage:
-Currently it has just two methods `persianToGregorian` and `gregorianToPersian` which will return a JavaScript object in form of `{ year: 1392, month: 10, day: 11 }`. For example:
+## Usage
+Currently it has just two methods `persianToGregorian` and `gregorianToPersian` which will return a JavaScript object in form of `{ year: 1392, month: 10, day: 11 }`.
 
-```
+For example:
+```javascript
 var persian = Roozh.gregorianToPersian(year, month, day);
 
 $("#persianYear").val(persian.year);
@@ -26,4 +27,5 @@ $("#persianDay").val(persian.day);
 
 C# version is pretty much the same just with PascalCasing!
 
-Version: 0.0.1 alpha (but core algorithm is correct, just needs some tools around the core)
+## Version
+0.0.1 alpha (but core algorithm is correct, just needs some tools around the core)
