@@ -257,7 +257,7 @@ public class Roozh {
 	 * 
 	 * @return Month as <code>int</code>
 	 */
-	private int getMonth() {
+	public int getMonth() {
 		return month;
 	}
 
@@ -266,7 +266,7 @@ public class Roozh {
 	 * 
 	 * @return Year as <code>int</code>
 	 */
-	private int getYear() {
+	public int getYear() {
 		return year;
 	}
 }
