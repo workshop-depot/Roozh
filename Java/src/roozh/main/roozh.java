@@ -16,8 +16,8 @@ package roozh.main;
  * 
  * Public methods summary:
  * <ul>
- * <li><code>GregorianToPersian()</code></li>
- * <li><code>PersianToGregorian()</code></li>
+ * <li><code>gregorianToPersian()</code></li>
+ * <li><code>persianToGregorian()</code></li>
  * <li><code>getYear()</code></li>
  * <li><code>getMonth()</code></li>
  * <li><code>getDay()</code></li>
@@ -31,7 +31,7 @@ package roozh.main;
  * @version 0.0.1-alpha
  */
 
-public class Roozh {
+public class roozh {
 
 	private int day, month, year;
 
@@ -40,7 +40,7 @@ public class Roozh {
 	private int leap, march;
 
 	/**
-	 * Calculates the Julian Day number (JG2JD) from Gregorian or Julian
+	 * Calculates the Julian Day number (jG2JD) from Gregorian or Julian
 	 * calendar dates. This integer number corresponds to the noon of the date
 	 * (i.e. 12 hours of Universal Time). The procedure was tested to be good
 	 * since 1 March, -100100 (of both the calendars) up to a few millions
@@ -58,7 +58,7 @@ public class Roozh {
 	 *            to be set to 1 for Julian and to 0 for Gregorian calendar
 	 * @return Julian Day number
 	 */
-	private int JG2JD(int year, int month, int day, int J1G0) {
+	private int jG2JD(int year, int month, int day, int J1G0) {
 		int jd = (1461 * (year + 4800 + (month - 14) / 12)) / 4
 				+ (367 * (month - 2 - 12 * ((month - 14) / 12))) / 12
 				- (3 * ((year + 4900 + (month - 14) / 12) / 100)) / 4 + day
@@ -82,7 +82,7 @@ public class Roozh {
 	 * @param J1G0
 	 *            to be set to 1 for Julian and to 0 for Gregorian calendar
 	 */
-	private void JD2JG(int JD, int J1G0) {
+	private void jD2JG(int JD, int J1G0) {
 		int i, j;
 
 		j = 4 * JD + 139361631;
@@ -103,13 +103,13 @@ public class Roozh {
 	 * @param JDN
 	 *            the Julian Day number
 	 */
-	private void JD2Jal(int JDN) {
-		JD2JG(JDN, 0);
+	private void jD2Jal(int JDN) {
+		jD2JG(JDN, 0);
 
 		jY = gY - 621;
-		JalCal(jY);
+		jalCal(jY);
 
-		int JDN1F = JG2JD(gY, 3, march, 0);
+		int JDN1F = jG2JD(gY, 3, march, 0);
 		int k = JDN - JDN1F;
 		if (k >= 0) {
 			if (k <= 185) {
@@ -141,9 +141,9 @@ public class Roozh {
 	 *            Jalali day as <code>int</code>
 	 * @return Julian day number
 	 */
-	private int Jal2JD(int jY, int jM, int jD) {
-		JalCal(jY);
-		int jd = JG2JD(gY, 3, march, 1) + (jM - 1) * 31 - jM / 7 * (jM - 7)
+	private int jal2JD(int jY, int jM, int jD) {
+		jalCal(jY);
+		int jd = jG2JD(gY, 3, march, 1) + (jM - 1) * 31 - jM / 7 * (jM - 7)
 				+ jD - 1;
 		return jd;
 	}
@@ -156,7 +156,7 @@ public class Roozh {
 	 * @param jY
 	 *            Jalali calendar year (-61 to 3177)
 	 */
-	private void JalCal(int jY) {
+	private void jalCal(int jY) {
 		march = 0;
 		leap = 0;
 
@@ -217,9 +217,9 @@ public class Roozh {
 	 * @param day
 	 *            <code>int</code>
 	 */
-	public void GregorianToPersian(int year, int month, int day) {
-		int jd = JG2JD(year, month, day, 0);
-		JD2Jal(jd);
+	public void gregorianToPersian(int year, int month, int day) {
+		int jd = jG2JD(year, month, day, 0);
+		jD2Jal(jd);
 		this.year = jY;
 		this.month = jM;
 		this.day = jD;
@@ -235,9 +235,9 @@ public class Roozh {
 	 * @param day
 	 *            <code>int</code>
 	 */
-	public void PersianToGregorian(int year, int month, int day) {
-		int jd = Jal2JD(year, month, day);
-		JD2JG(jd, 0);
+	public void persianToGregorian(int year, int month, int day) {
+		int jd = jal2JD(year, month, day);
+		jD2JG(jd, 0);
 		this.year = gY;
 		this.month = gM;
 		this.day = gD;
